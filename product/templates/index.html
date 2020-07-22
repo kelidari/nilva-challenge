@@ -1,26 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Products</h1>
-    <button>gfgggggg to Cart</button>
-
-    <div class="row">
+    <h1 dir="rtl" align="center">فروشگاه آنلاین</h1>
+    <div class="row" style="margin-left: 100px;">
         {% for product in product %}
-            <div class="card" style="width: 18rem;">
-                <img src="{{ product.image_url }}" class="card-img-top" alt="...">
+            <div class="card" style="width: 18rem; margin-top: 50px;">
+                <img src="{{ product.image_url}}"  class="card-img-top" alt="..." style="width: 18rem; height: 20rem " >
                 <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p class="card-text">قیمت : {{ product.price }}</p>
-                    <p class="card-text">توضیحات :{{ product.explain }} ریال </p>
-                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                    <h5 class="card-title" dir="rtl" align="right">نام محصول : {{ product.name }}</h5>
+                    <p class="card-text" dir="rtl" align="right">قیمت : {{ product.price }} ریال</p>
+                    <p class="card-text" dir="rtl" align="right">توضیحات : {{ product.explain }} </p>
+                    <a href="#" class="btn btn-primary" dir="rtl" align="right">افزودن به سبد خرید</a>
                 </div>
             </div>
             <div class="col"></div>
 
         {% endfor %}
     </div>
-
-
 
 {% endblock %}
 
