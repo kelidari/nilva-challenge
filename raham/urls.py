@@ -15,8 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.urlpatterns import format_suffix_patterns
+from availabel import views
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('product/', include('product.urls'))
+    path('product/', include('product.urls')),
+    path('availabel/', views.ProductList.as_view())
 ]
+
+urlpatterns=format_suffix_patterns(urlpatterns)
