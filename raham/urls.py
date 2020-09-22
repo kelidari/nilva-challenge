@@ -17,13 +17,16 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from availabel import views
-
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
+
+   path('', TemplateView.as_view(template_name="accounts/login.html")),
     path('admin/', admin.site.urls),
     path('product/', include('product.urls')),
-    path('availabel/', views.ProductList.as_view())
+    path('availabel/', views.ProductList.as_view()),
+    path('accounts/',include('allauth.urls'))
 ]
 
 urlpatterns=format_suffix_patterns(urlpatterns)

@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
-
+    !-- Search form -->
 {% block content %}
+    <form class="form-inline md-form mr-auto mb-4" action="/product/search" method="GET">
+  <input id="search-box" class="form-control mr-sm-2" type="text" name='q' placeholder="Search" aria-label="Search" >
+  <button class="btn btn-elegant btn-rounded btn-sm my-0" type="submit" >Search</button>
+</form>
+
+
     <h1 dir="rtl" align="center">فروشگاه آنلاین</h1>
     <div class="row" style="margin-left: 100px;">
         {% for product in product %}
@@ -17,6 +23,7 @@
 
         {% endfor %}
     </div>
+
 
 {% endblock %}
 
