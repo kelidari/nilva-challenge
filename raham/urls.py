@@ -25,7 +25,7 @@ urlpatterns = [
    path('', TemplateView.as_view(template_name="accounts/login.html")),
     path('admin/', admin.site.urls),
     path('product/', include('product.urls')),
-    path('availabel/', views.ProductList.as_view()),
+    path('availabel/', include('availabel.urls')),
     path('accounts/',include('allauth.urls'))
 ]
 
