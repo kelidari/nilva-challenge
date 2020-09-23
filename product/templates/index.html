@@ -16,7 +16,7 @@
                     <h5 class="card-title" dir="rtl" align="right">نام محصول : {{ product.name }}</h5>
                     <p class="card-text" dir="rtl" align="right">قیمت : {{ product.price }} ریال</p>
                     <p class="card-text" dir="rtl" align="right">توضیحات : {{ product.explain }} </p>
-                    <a href="#" class="btn btn-primary" dir="rtl" align="right">افزودن به سبد خرید</a>
+                    <a href="order?name={{ product.name }}" class="btn btn-primary" dir="rtl" align="right" methods="POST" onClick=>افزودن به سبد خرید</a>
                 </div>
             </div>
             <div class="col"></div>
