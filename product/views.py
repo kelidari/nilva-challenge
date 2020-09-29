@@ -2,7 +2,6 @@ from django.db.models.query_utils import Q
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.list import ListView
-
 from .models import Product
 
 

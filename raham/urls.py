@@ -26,7 +26,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('product/', include('product.urls')),
     path('availabel/', include('availabel.urls')),
-    path('accounts/',include('allauth.urls'))
+    path('accounts/',include('allauth.urls')),
+    path('signup/' , include('login.urls')),
 ]
 
 urlpatterns=format_suffix_patterns(urlpatterns)
