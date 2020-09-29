@@ -23,7 +23,10 @@ def login_view(request):
         if form.is_valid():
             user=form.get_user()
             login(request,user)
-            return redirect('product:list')
+            if 'nextpage' in request.POST:
+                return redirect(request.POST.get('nextpage'))
+            else:
+                return redirect('product:list')
         else:
             form = AuthenticationForm()
     else:

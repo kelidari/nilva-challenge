@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create product!</title>
+</head>
+<body>
+<h1>create product!</h1>
+<form action="{% url 'product:create' %}" method="post" class="create-form">
+{{ form }}
+{% csrf_token %}
+<input type="submit" value="created">
+    </form>
+</body>
+</html>
