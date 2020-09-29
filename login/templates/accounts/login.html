@@ -13,12 +13,35 @@
 {#        console.log("dsklhfskldfklshdfklhskldhfklshdklfhskdh",csrftoken);#}
 {#        alert('token is : '+csrftoken);#}
 {#    </script>#}
-    <a href="signup" class="btn btn-primary" style="background-color: #fffccf">SignUp</a>
-    <a href="{% provider_login_url 'google' %}" style="background-color: lightskyblue"   >Login with another Google</a>
-    <a href="product" class="btn btn-primary" style="background-color: #fffccf" >Display Product </a>
+    <nav>
+    <ul>
+        <li>
+            <form class="logout-link" method="post" action="{% url 'accounts:logout' %}">
+                {% csrf_token %}
+                <button type="submit">logout</button>
+            </form>
+        </li>
+        <li>
+             <a href="{% provider_login_url 'google' %}" style="background-color: lightskyblue"   >Login with another Google</a>
+
+        </li>
+{#        <li>#}
+{#               <a href="signup" class="btn btn-primary" style="background-color: #fffccf">SignUp</a>#}
+{#        </li>#}
+        <li>
+             <a href="product" class="btn btn-primary" style="background-color: #fffccf" >Display Product </a>
+        </li>
+    </ul>
+    </nav>
+
 
 
   {% else %}
+    <form action="{% url 'accounts:login' %}" method="post">
+    {{ form }}
+    {% csrf_token %}
+    <input type="submit" value="login">
+    </form>
  <a href="signup" class="btn btn-primary" style="background-color: #fffccf">SignUp</a>
   <a href="{% provider_login_url 'google' %}" class="btn btn-primary">Login with Google</a>
   {% endif %}
