@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% load socialaccount %}
+{% providers_media_js %}
 
 <html lang="en">
 <head>
@@ -27,9 +29,39 @@ tr:nth-child(even) {
 </style>
 </head>
 <body>
+
 {% if user.is_authenticated %}
-    <p>Welcome {{ user.username }} ! </p>
-{% endif %}
+    <p>Welcome {{ user.username }}! </p>
+
+    <nav>
+    <ul>
+        <li>
+            <form class="logout-link" method="post" action="{% url 'accounts:logout' %}">
+                {% csrf_token %}
+                <button type="submit">logout</button>
+            </form>
+        </li>
+        <li>
+             <a href="{% provider_login_url 'google' %}" style="background-color: lightskyblue"   >Login with another Google acoount</a>
+
+        </li>
+
+    </ul>
+    </nav>
+  {% else %}
+    <form action="{% url 'accounts:login' %}" method="post">
+    {{ form }}
+    {% csrf_token %}
+        {% if request.GET.next %}
+            <input type="hidden" name="nextpage" value="{{ request.GET.next }}">
+        {% endif %}
+    <input type="submit" value="login">
+    </form>
+ <a href="{%  url 'accounts:signup' %}" class="btn btn-primary" style="background-color: #fffccf">SignUp</a>
+  <a href="{% provider_login_url 'google' %}" class="btn btn-primary">Login with Google</a>
+  {% endif %}
+
+
 <h1 style="background-color: #ffa07a "  > Existing file in "Kelidari" bucket </h1>
 {% csrf_token %}
 
