@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+import boto3
+import boto.s3.connection
+import boto
+from boto.s3.connection import OrdinaryCallingFormat, Location
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -46,6 +49,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'storages',
+    'awsapp',
 
 ]
 
@@ -150,3 +155,38 @@ REST_FRAMEWORK = {
 
 SITE_ID=1
 LOGIN_REDIRECT_URL = '/'
+
+
+access_key = '750fb402-96e4-413d-a368-4b62c937d7c6'
+secret_key = 'c7443aa5b0066f20f06314a0b168023a7baba34a4a061d5252802adc6a47a197'
+endpoint = 'https://s3.ir-thr-at1.arvanstorage.com/'
+session = boto3.session.Session()
+
+
+# Connection
+s3_client = session.client(
+    service_name='s3',
+    aws_access_key_id=access_key,
+    aws_secret_access_key=secret_key,
+    endpoint_url=endpoint,
+
+
+)
+
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = access_key
+AWS_SECRET_ACCESS_KEY = secret_key
+AWS_STORAGE_BUCKET_NAME = 'kelidari'
+AWS_S3_ENDPOINT_URL=endpoint
+AWS_AUTO_CREATE_BUCKET = False
+AWS_S3_HOST = 's3-ap-southeast-2.amazonaws.com/'
+AWS_S3_CALLING_FORMAT = 'boto.s3.connection.OrdinaryCallingFormat'
+AWS_DEFAULT_ACL='public-read'
+
+S3DIRECT_DESTINATIONS = {
+    'primary_destination': {
+        'key': 'uploads/',
+        'allowed': ['image/jpg', 'image/jpeg', 'image/png', 'video/mp4'],
+    },
+}

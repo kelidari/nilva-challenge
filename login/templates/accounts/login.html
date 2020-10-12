@@ -45,7 +45,7 @@
         {% endif %}
     <input type="submit" value="login">
     </form>
- <a href="signup" class="btn btn-primary" style="background-color: #fffccf">SignUp</a>
+ <a href="{%  url 'accounts:signup' %}" class="btn btn-primary" style="background-color: #fffccf">SignUp</a>
   <a href="{% provider_login_url 'google' %}" class="btn btn-primary">Login with Google</a>
   {% endif %}
 

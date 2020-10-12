@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bucket Content</title>
+    <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+        h1{
+            background-color: #FFA07A;
+            padding: 10px;
+        }
+</style>
+</head>
+<body>
+{% if user.is_authenticated %}
+    <p>Welcome {{ user.username }} ! </p>
+{% endif %}
+<h1 style="background-color: #ffa07a "  > Existing file in "Kelidari" bucket </h1>
+{% csrf_token %}
+
+<table>
+    <tr>
+        <th>file name</th>
+        <th>link</th>
+        <th>Delete</th>
+    </tr>
+    {% for key in key %}
+
+        <tr>
+            <td> {{ key }} </td>
+            <td><a onclick="{% url 'aws:download' %}" href="https://kelidari.s3.ir-thr-at1.arvanstorage.com/{{ key }}" >{{ key }}</a></td>
+            <td> <a href="delete?key={{ key }}" class="btn btn-primary"  align="right" methods="POST" >delete</a> </td>
+        </tr>
+    {% endfor %}
+</table>
+
+
+<div class="container">
+      <div class="section">
+        <h1 class="is-size-1" >Upload File</h1>
+          <h3 > Uploading new file in "Kelidari" bucket </h3>
+        <hr><br>
+        <form action="{% url 'aws:upload' %}" method="post" enctype="multipart/form-data" class="form">
+
+          {% csrf_token %}
+          <div class="field">
+            <div class="control">
+              <div class="file">
+                <label class="file-label">
+                  <input class="file-input" type="file" name="image_file">
+                  <span class="file-cta">
+                    <span class="file-label">Choose a file...</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="field">
+            <div class="control">
+              <input type="submit" value="Submit" class="button is-primary" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+</body>
+</html>
