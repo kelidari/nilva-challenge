@@ -28,7 +28,7 @@ urlpatterns = [
     path('availabel/', include('availabel.urls')),
     path('accounts/',include('allauth.urls')),
     path('signup/' , include('login.urls')),
-    path('aws/' , include('awsapp.urls')),
+
 ]
 
 urlpatterns=format_suffix_patterns(urlpatterns)
