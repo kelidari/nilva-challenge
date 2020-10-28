@@ -1,11 +1,29 @@
 {% extends 'base.html' %}
     !-- Search form -->
 {% block content %}
-    <form class="form-inline md-form mr-auto mb-4" action="/product/search" method="GET">
-  <input id="search-box" class="form-control mr-sm-2" type="text" name='q' placeholder="Search" aria-label="Search" >
-  <button class="btn btn-elegant btn-rounded btn-sm my-0" type="submit" >Search</button>
-</form>
-    <a href="{%  url 'product:create' %}" class="btn btn-primary" style="background-color: #5b80b2">create new product</a>
+
+     <nav  class="navbar navbar-light" style="background-color: #5b80b2;" >
+
+ <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'product:list' %}">Product list <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{%  url 'product:create' %}">create new product</a>
+      </li>
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="/product/search" method="GET">
+      <input class="form-control mr-sm-2" type="search"  name='q' placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
 
 
     <h1 dir="rtl" align="center">فروشگاه آنلاین</h1>
